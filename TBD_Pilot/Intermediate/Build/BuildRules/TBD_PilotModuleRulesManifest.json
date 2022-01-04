@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"D:\\TBD_Project\\TBD\\TBD_Pilot\\Source\\TBD_Pilot\\TBD_Pilot.Build.cs",
-		"D:\\TBD_Project\\TBD\\TBD_Pilot\\Source\\TBD_Pilot.Target.cs",
-		"D:\\TBD_Project\\TBD\\TBD_Pilot\\Source\\TBD_PilotEditor.Target.cs"
-	],
-	"EngineVersion": "4.27.2"
-}

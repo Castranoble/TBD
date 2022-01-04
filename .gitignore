@@ -72,3 +72,15 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+TBD_Pilot/Config/
+
+TBD_Pilot/Saved/Config/Windows/EditorPerProjectUserSettings.ini
+
+TBD_Pilot/Intermediate/
+
+TBD_Pilot/Saved/Config/Windows/UnrealInsightsSettings.ini
+
+TBD_Pilot/Saved/Config/Windows/Engine.ini
+
+TBD_Pilot/Saved/

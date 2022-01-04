@@ -1,0 +1,2 @@
+D:\TBD_Project\TBD\TBD_Pilot\Intermediate\Build\Win64\UE4Editor\Development\TBD_Pilot\Definitions.TBD_Pilot.h
+D:\TBD_Project\TBD\TBD_Pilot\Source\TBD_Pilot\TBD_Pilot.h

@@ -1,0 +1,9 @@
+D:\TBD_Project\TBD\TBD_Pilot\Intermediate\Build\Win64\UE4Editor\Development\TBD_Pilot\Definitions.TBD_Pilot.h
+D:\Epic Games\Engines\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\Epic Games\Engines\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+D:\TBD_Project\TBD\TBD_Pilot\Source\TBD_Pilot/TBD_PilotGameMode.h
+D:\Epic Games\Engines\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\Epic Games\Engines\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\Epic Games\Engines\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\Epic Games\Engines\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+D:\TBD_Project\TBD\TBD_Pilot\Intermediate\Build\Win64\UE4Editor\Inc\TBD_Pilot\TBD_PilotGameMode.generated.h

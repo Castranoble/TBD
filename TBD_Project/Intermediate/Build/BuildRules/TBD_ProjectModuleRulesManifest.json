@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\TBD_Game\\TBD\\TBD_Project\\Source\\TBD_Project\\TBD_Project.Build.cs",
+		"D:\\TBD_Game\\TBD\\TBD_Project\\Source\\TBD_Project.Target.cs",
+		"D:\\TBD_Game\\TBD\\TBD_Project\\Source\\TBD_ProjectEditor.Target.cs"
+	],
+	"EngineVersion": "4.27.2"
+}

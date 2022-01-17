@@ -74,3 +74,11 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 
 *.log
+
+*.pdb
+
+TBD_Project/Saved/
+
+TBD_Project/Intermediate/
+
+TBD_Project/Binaries/

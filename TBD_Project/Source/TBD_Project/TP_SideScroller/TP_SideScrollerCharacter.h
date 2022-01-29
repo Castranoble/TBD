@@ -21,8 +21,9 @@ class ATP_SideScrollerCharacter : public ACharacter
 
 protected:
 
-	/** Called for side to side input */
+	/** Called for movement input */
 	void MoveRight(float Val);
+	void MoveUp(float Val);
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);

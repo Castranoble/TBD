@@ -9,13 +9,17 @@ AInteractable::AInteractable()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMeshComponent");
+	
+	
 }
 
 // Called when the game starts or when spawned
 void AInteractable::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	StaticMesh->SetWorldScale3D(FMath::VRand());
 }
 
 // Called every frame

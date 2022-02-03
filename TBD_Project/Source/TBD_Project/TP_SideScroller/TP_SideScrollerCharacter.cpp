@@ -1,12 +1,18 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "TP_SideScrollerCharacter.h"
+
+#include <concrt.h>
+#include <ostream>
+
+#include "DrawDebugHelpers.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
+// Constructor
 ATP_SideScrollerCharacter::ATP_SideScrollerCharacter()
 {
 	// Set size for collision capsule
@@ -16,7 +22,7 @@ ATP_SideScrollerCharacter::ATP_SideScrollerCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
-
+	
 	// Create a camera boom attached to the root (capsule)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -43,6 +49,8 @@ ATP_SideScrollerCharacter::ATP_SideScrollerCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+	TraceDistance = 2000.0f;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -53,6 +61,9 @@ void ATP_SideScrollerCharacter::SetupPlayerInputComponent(class UInputComponent*
 	// set up gameplay key bindings
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this,
+		&ATP_SideScrollerCharacter::InteractWithObject);
+	
 	PlayerInputComponent->BindAxis("MoveRight", this, &ATP_SideScrollerCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("MoveUp", this, & ATP_SideScrollerCharacter::MoveUp);
 
@@ -72,6 +83,31 @@ void ATP_SideScrollerCharacter::MoveUp(float Value)
 	AddMovementInput(FVector(-1.f, 0.f, 0.f), Value);
 }
 
+void ATP_SideScrollerCharacter::InteractWithObject()
+{
+	TraceForward();
+}
+
+void ATP_SideScrollerCharacter::TraceForward_Implementation()
+{
+	FVector Location = K2_GetActorLocation();
+	FRotator Rotation = K2_GetActorRotation();
+	FHitResult HitResult;
+
+	FVector StartLoc = Location;
+	FVector EndLoc = StartLoc + (Rotation.Vector() * TraceDistance);
+
+	FCollisionQueryParams ColQueryParams;
+	GetWorld()->LineTraceSingleByChannel(HitResult, StartLoc, EndLoc, ECC_Visibility, ColQueryParams);
+
+	DrawDebugLine(GetWorld(), StartLoc, EndLoc, FColor::Red, false, 2.0f);
+
+	if (HitResult.Item != NULL)
+	{
+		DrawDebugBox(GetWorld(), HitResult.ImpactPoint, FVector(5,5,5), FColor::Cyan, false, 2.f);
+	}
+}
+
 void ATP_SideScrollerCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	// jump on any touch
@@ -82,4 +118,3 @@ void ATP_SideScrollerCharacter::TouchStopped(const ETouchIndex::Type FingerIndex
 {
 	StopJumping();
 }
-

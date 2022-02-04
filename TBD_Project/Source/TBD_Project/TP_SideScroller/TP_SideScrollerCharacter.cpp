@@ -11,6 +11,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Interactions/InteractionInterface.h"
 
 // Constructor
 ATP_SideScrollerCharacter::ATP_SideScrollerCharacter()
@@ -102,10 +103,24 @@ void ATP_SideScrollerCharacter::TraceForward_Implementation()
 
 	DrawDebugLine(GetWorld(), StartLoc, EndLoc, FColor::Red, false, 2.0f);
 
-	if (HitResult.Item != NULL)
+	AActor* HitActor = HitResult.GetActor();
+	
+	if (!HitActor)
 	{
-		DrawDebugBox(GetWorld(), HitResult.ImpactPoint, FVector(5,5,5), FColor::Cyan, false, 2.f);
+		return;
 	}
+	
+	DrawDebugBox(GetWorld(), HitResult.ImpactPoint, FVector(5,5,5), FColor::Cyan, false, 2.f);
+	
+	IInteractionInterface* InteractionInterface = Cast<IInteractionInterface>(HitActor);
+
+	if (!InteractionInterface)
+	{
+		return;
+	}
+
+	InteractionInterface->Execute_StartFocus(HitActor);
+
 }
 
 void ATP_SideScrollerCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)

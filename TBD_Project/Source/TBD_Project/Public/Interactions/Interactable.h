@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InteractionInterface.h"
 #include "GameFramework/Actor.h"
 #include "Interactable.generated.h"
 
 UCLASS()
-class TBD_PROJECT_API AInteractable : public AActor
+class TBD_PROJECT_API AInteractable : public AActor, public IInteractionInterface
 {
 	GENERATED_BODY()
 	
@@ -19,11 +20,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, Category = "Components")
-	UStaticMeshComponent* StaticMesh;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interactions")
+	void OnInteract(AActor* Caller);
+	virtual void OnInteract_Implementation(AActor* Caller);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interactions")
+	void StartFocus();
+	virtual void StartFocus_Implementation();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interactions")
+	void EndFocus();
+	virtual void EndFocus_Implementation();
 };

@@ -11,6 +11,7 @@
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Interactions/Interactable.h"
 #include "Interactions/InteractionInterface.h"
 
 // Constructor
@@ -112,14 +113,14 @@ void ATP_SideScrollerCharacter::TraceForward_Implementation()
 	
 	DrawDebugBox(GetWorld(), HitResult.ImpactPoint, FVector(5,5,5), FColor::Cyan, false, 2.f);
 	
-	IInteractionInterface* InteractionInterface = Cast<IInteractionInterface>(HitActor);
+	AInteractable* Interaction = Cast<AInteractable>(HitActor);
 
-	if (!InteractionInterface)
+	if (Interaction == nullptr)
 	{
 		return;
 	}
 
-	InteractionInterface->Execute_StartFocus(HitActor);
+	Interaction->OnInteract(this);
 
 }
 

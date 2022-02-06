@@ -6,35 +6,29 @@
 // Sets default values
 AInteractable::AInteractable()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-		
+	if (MovingObject == nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Red,TEXT("Warning, Moving Object not set"));
+	}
 }
-
-// Called when the game starts or when spawned
-void AInteractable::BeginPlay()
+	
+void AInteractable::OnInteract(AActor* Caller)
 {
-	Super::BeginPlay();
-}
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow,TEXT("OnInteract Was called"));
 
-// Called every frame
-void AInteractable::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
+	FVector NewLocation = Caller->GetActorLocation();
 
-}
-
-void AInteractable::OnInteract_Implementation(AActor* Caller)
-{
+	NewLocation += FVector(0.f, 0.f, 5.f);
+	Caller->SetActorLocation(NewLocation);
 	Destroy();
 }
 
-void AInteractable::StartFocus_Implementation()
+void AInteractable::StartFocus()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Orange, TEXT("Start Focus"));
 }
 
-void AInteractable::EndFocus_Implementation()
+void AInteractable::EndFocus()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Orange, TEXT("Stop Focus"));
 }
